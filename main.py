@@ -29,6 +29,7 @@ def key_append_to_log(keystrokes):
         file_a.write(keystroke_data)
 
 
+# reads from a local text file (meant for admin only)
 def read_from_log(file):
     # reads from a local text file called 'usr_log'
     with open(file, 'r') as file_r:
