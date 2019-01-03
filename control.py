@@ -1,5 +1,6 @@
 # imports
-from main import append_to_log
+from main import mouse_append_to_log
+from main import key_append_to_log
 from pynput.mouse import Controller
 from pynput.keyboard import Controller
 from pynput.keyboard import Listener
@@ -22,16 +23,10 @@ def keyboard_control(typed_phrase):
     keyboard.type(typed_phrase)
 
 
-def mouse_listen():
-    with Listener(on_move=append_to_log) as mouse_l:
-        mouse_l.join()
+# listens for keystrokes and mouse movement
+def keyboard_mouse_listen():
+    with Listener(on_move=mouse_append_to_log) as mouse_l, Listener(on_press=key_append_to_log) as key_l:
+        mouse_l.join(), key_l.join()
 
 
-# listens for any keystrokes
-def keyboard_listen():
-    with Listener(on_press=append_to_log) as key_l:
-        key_l.join()
-
-
-mouse_listen()
-keyboard_listen()
+keyboard_mouse_listen()
