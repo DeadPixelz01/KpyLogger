@@ -1,10 +1,7 @@
 # imports
-from main import mouse_append_to_log
-from main import key_append_to_log
-from pynput.mouse import Controller
+from main import append_to_log
 from pynput.keyboard import Controller
 from pynput.keyboard import Listener
-from pynput.mouse import Listener
 
 
 # controls the position of the user's mouse
@@ -23,10 +20,9 @@ def keyboard_control(typed_phrase):
     keyboard.type(typed_phrase)
 
 
-# listens for keystrokes and mouse movement
-def keyboard_mouse_listen():
-    with Listener(on_move=mouse_append_to_log) as mouse_l, Listener(on_press=key_append_to_log) as key_l:
-        mouse_l.join(), key_l.join()
+def keyboard_listen():
+    with Listener(on_press=append_to_log) as key_l:
+        key_l.join()
 
 
-keyboard_mouse_listen()
+keyboard_listen()
