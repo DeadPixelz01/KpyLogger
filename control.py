@@ -4,14 +4,6 @@ from pynput.keyboard import Controller
 from pynput.keyboard import Listener
 
 
-# controls the position of the user's mouse
-def mouse_control(position):
-    # create a variable called mouse and set it to use the controller function
-    mouse = Controller()
-    # move the mouse to a position (x,y) (always starts from top-left of screen)
-    mouse.position = position
-
-
 # types out a string using the user's keyboard
 def keyboard_control(typed_phrase):
     # create a variable called keyboard and set it to use the controller function
@@ -20,9 +12,8 @@ def keyboard_control(typed_phrase):
     keyboard.type(typed_phrase)
 
 
-def keyboard_listen():
-    with Listener(on_press=append_to_log) as key_l:
-        key_l.join()
-
-
-keyboard_listen()
+# listens for keyboard presses
+# on press, run the 'append_to_log' function
+with Listener(on_press=append_to_log) as key_l:
+    # join the keys together(for formatting reasons)
+    key_l.join()
